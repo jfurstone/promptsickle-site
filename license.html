@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Promptsickle — Buy &amp; Activate</title>
+<meta name="description" content="Buy Promptsickle ($59, one-time, lifetime updates) and activate your license key." />
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1c2029; --border:#262b36;
+    --text:#e6e9ef; --muted:#8b93a3; --accent:#7c5cff; --accent-soft:#9d86ff;
+    --gold:#ffd23f; --ok:#46c28a; --error:#ff6b6b; --user:#9db2ff;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"Cascadia Code",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  a{color:var(--accent-soft);text-decoration:none}
+  .gold{color:var(--gold)}
+
+  header{text-align:center;padding:56px 0 34px;
+    background:radial-gradient(680px 300px at 50% -10%,rgba(124,92,255,.22),transparent 60%)}
+  .brand{font-size:24px;font-weight:800;letter-spacing:.3px}
+  .brand .s{color:var(--gold)}
+  header h1{font-size:clamp(26px,4.4vw,38px);margin:18px auto 10px;max-width:18ch;font-weight:800;line-height:1.12}
+  header p{color:var(--muted);max-width:54ch;margin:0 auto;font-size:17px}
+
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:26px;margin:18px 0}
+  .price{display:flex;align-items:baseline;gap:10px;justify-content:center;margin-bottom:6px}
+  .price .amt{font-size:46px;font-weight:800;letter-spacing:-1px}
+  .price .per{color:var(--muted)}
+  .perks{list-style:none;padding:0;margin:14px 0 22px;display:grid;gap:8px}
+  .perks li{padding-left:26px;position:relative;color:var(--text)}
+  .perks li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:800}
+  .buy{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:800;font-size:18px;
+    border:0;border-radius:12px;padding:15px 22px;cursor:pointer;box-shadow:0 10px 30px rgba(124,92,255,.35);transition:transform .08s ease}
+  .buy:hover{transform:translateY(-1px);background:var(--accent-soft)}
+  .sub{text-align:center;color:var(--muted);font-size:13px;margin-top:12px}
+  .promo{display:inline-block;border:1px dashed var(--gold);color:var(--gold);border-radius:8px;padding:3px 10px;font-size:13px;margin-top:6px}
+
+  h2{font-size:20px;margin:0 0 4px}
+  .lead{color:var(--muted);margin:0 0 16px;font-size:15px}
+  .field{display:flex;flex-direction:column;gap:8px}
+  textarea{width:100%;min-height:96px;resize:vertical;background:var(--bg);color:var(--text);
+    border:1px solid var(--border);border-radius:10px;padding:12px;font-family:var(--mono);font-size:13px}
+  textarea:focus{outline:none;border-color:var(--accent)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+  .btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-weight:700;cursor:pointer;font-size:15px}
+  .btn:hover{background:var(--accent-soft)}
+  .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--accent)}
+  .result{margin-top:16px;border-radius:10px;padding:14px 16px;font-size:14.5px;display:none}
+  .result.show{display:block}
+  .result.ok{background:rgba(70,194,138,.12);border:1px solid var(--ok)}
+  .result.bad{background:rgba(255,107,107,.12);border:1px solid var(--error)}
+  .result h3{margin:0 0 6px;font-size:16px}
+  .result.ok h3{color:var(--ok)} .result.bad h3{color:var(--error)}
+  .kv{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:8px;white-space:pre-wrap;word-break:break-all}
+  .steps{counter-reset:s;display:grid;gap:12px;margin:0;padding:0;list-style:none}
+  .steps li{position:relative;padding-left:38px;color:var(--text)}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-2px;width:26px;height:26px;border-radius:50%;
+    background:var(--panel2);border:1px solid var(--border);color:var(--gold);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:13px}
+  .trust{font-size:14px;color:var(--muted)}
+  .trust b{color:var(--text)}
+  footer{text-align:center;color:var(--muted);font-size:12.5px;padding:30px 0 44px}
+  .mut{color:var(--muted)}
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand">Prompt<span class="s">sickle</span></div>
+    <h1>Learn Claude by using Claude.</h1>
+    <p>65 hands-on lessons in a live sandbox that remembers exactly where you left off. One purchase, lifetime updates.</p>
+  </header>
+
+  <div class="wrap">
+
+    <!-- BUY -->
+    <div class="card" id="buy">
+      <div class="price"><span class="amt">$59</span><span class="per">once · lifetime updates</span></div>
+      <ul class="perks">
+        <li>All 65 interactive lessons + live practice sandbox</li>
+        <li>Karaoke tutor &amp; exact-word resume</li>
+        <li>Free updates for life as Claude changes</li>
+        <li>Windows &amp; Mac · 14-day money-back guarantee</li>
+      </ul>
+      <a class="buy" style="background:transparent;border:2px solid var(--accent);color:var(--text);margin-bottom:10px" href="https://github.com/jfurstone/promptsickle-site/releases/download/v0.1.0/Promptsickle_0.1.0_x64-setup.exe">
+        ⬇ Download — free 7-day trial
+      </a>
+      <!-- Replace the href with your real Gumroad product URL. gumroad.js turns it into an overlay checkout. -->
+      <a class="buy gumroad-button" href="https://promptsickle.gumroad.com/l/promptsickle" data-gumroad-overlay-checkout="true">
+        Get Promptsickle — $59
+      </a>
+      <div class="sub">
+        You bring your own Anthropic API key (stays on your machine). Tokens cost a few cents per lesson, paid to Anthropic — not us.
+        <br><span class="promo">Launch code: PH20 → $47</span>
+      </div>
+    </div>
+
+    <!-- ACTIVATE -->
+    <div class="card" id="activate">
+      <h2>Already bought? Activate your key</h2>
+      <p class="lead">Paste the license key from your Gumroad receipt to check it. Final activation happens inside the
+        Promptsickle app — this just confirms your key is valid.</p>
+      <div class="field">
+        <textarea id="keyInput" placeholder="Paste your license key here (looks like: eyJ...  .  ...)"></textarea>
+      </div>
+      <div class="row">
+        <button class="btn" id="verifyBtn">Check my key</button>
+        <button class="btn ghost" id="sampleBtn">Try a sample key</button>
+        <a class="mut" style="margin-left:auto;font-size:13px" href="mailto:[you@example.com]?subject=Promptsickle%2014-day%20trial">Want a 14-day trial instead?</a>
+      </div>
+      <div class="result" id="result"></div>
+    </div>
+
+    <!-- HOW TO ACTIVATE -->
+    <div class="card">
+      <h2>How activation works</h2>
+      <ol class="steps">
+        <li>Buy above — Gumroad emails you a <b>license key</b> instantly.</li>
+        <li>Open the Promptsickle app → <b>Settings → Enter license key</b>.</li>
+        <li>Paste it. The app verifies the signature <b>offline</b> (no account, no server) and unlocks all lessons.</li>
+        <li>Lost it? It's in your Gumroad receipt email, or re-download from your Gumroad library.</li>
+      </ol>
+    </div>
+
+    <!-- TRUST -->
+    <div class="card trust">
+      <h2 style="color:var(--text)">Your key. Your machine.</h2>
+      <p>The hands-on sandbox runs on <b>your own Anthropic API key</b>, stored locally (OS keychain) — never on our servers.
+        We sell software, not metered access, so we make nothing on your token usage. Promptsickle does <b>not</b> log in through a
+        Claude Pro/Max subscription (Anthropic prohibits that for third-party apps) — API key only, the compliant way.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    Prompt<span class="gold">sickle</span> · Not affiliated with or endorsed by Anthropic. Claude is a trademark of Anthropic, PBC.
+  </footer>
+
+<script>
+  // Embedded PUBLIC verification key (safe to publish). Replace if you regenerate the keypair:
+  //   python scripts/license_keys.py gen-keypair   →   scripts/promptsickle-public-key.hex
+  const PUBKEY_HEX = "5af2dc51c3b35b084b431c565f9334a615df74be4e7e5ea610faaf715840725d";
+  // A real sample 14-day trial token signed by the matching private key (for the "Try a sample key" demo):
+  const SAMPLE_KEY = "eyJlbWFpbCI6ImJ1eWVyQGV4YW1wbGUuY29tIiwiZXhwIjoxNzgzMTEyNDg2LCJpYXQiOjE3ODE5MDI4ODYsImlkIjoiMDgzY2MzODc1YmYyNDgyNThhMzU4ZGY0OGYxMWFlZjciLCJraW5kIjoidHJpYWwiLCJza3UiOiJwcm9tcHRzaWNrbGUiLCJ2IjoxfQ.DpApksfykb2O6u4Kz4TL93WBmdKzTYxv0zJGh30K1FGLZzLcSRzcDQMmY8wwLVviKBnd9cZDYGRBnWenfKRQCQ";
+
+  const $ = id => document.getElementById(id);
+  function hexToBytes(h){ const a=new Uint8Array(h.length/2); for(let i=0;i<a.length;i++) a[i]=parseInt(h.substr(i*2,2),16); return a; }
+  function b64uToBytes(s){ s=s.replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='='; const b=atob(s); const a=new Uint8Array(b.length); for(let i=0;i<b.length;i++) a[i]=b.charCodeAt(i); return a; }
+
+  async function verifyKey(token){
+    const parts = token.trim().split(".");
+    if(parts.length!==2) throw "format";
+    const msg = b64uToBytes(parts[0]), sig = b64uToBytes(parts[1]);
+    let key;
+    try{ key = await crypto.subtle.importKey("raw", hexToBytes(PUBKEY_HEX), {name:"Ed25519"}, false, ["verify"]); }
+    catch(e){ throw "unsupported"; }
+    const ok = await crypto.subtle.verify({name:"Ed25519"}, key, sig, msg);
+    if(!ok) throw "signature";
+    const p = JSON.parse(new TextDecoder().decode(msg));
+    if(p.sku!=="promptsickle") throw "product";
+    if(p.exp!=null && Date.now()/1000 > p.exp) throw {expired:p.exp};
+    return p;
+  }
+
+  function show(ok, title, html){
+    const r=$("result"); r.className="result show "+(ok?"ok":"bad");
+    r.innerHTML="<h3>"+title+"</h3>"+html;
+  }
+  function fmt(ts){ return ts==null ? "never (lifetime)" : new Date(ts*1000).toISOString().slice(0,10); }
+
+  $("verifyBtn").addEventListener("click", async ()=>{
+    const tok=$("keyInput").value.trim();
+    if(!tok){ show(false,"Paste a key first","Copy the license key from your Gumroad receipt and paste it above."); return; }
+    try{
+      const p=await verifyKey(tok);
+      show(true, p.kind==="trial" ? "Valid trial key ✓" : "Valid license ✓",
+        "Your key checks out. Enter it in the app under <b>Settings → Enter license key</b>."+
+        "<div class='kv'>plan: "+p.kind+"\nemail: "+p.email+"\nexpires: "+fmt(p.exp)+"</div>");
+    }catch(e){
+      if(e && e.expired) show(false,"Key expired", "This trial ended on "+fmt(e.expired)+". Buy above to unlock all lessons — your progress is saved.");
+      else if(e==="signature"||e==="format"||e==="product") show(false,"Not a valid key","That doesn't look like a Promptsickle license key. Check you copied the whole thing from your receipt.");
+      else if(e==="unsupported") show(false,"Can't verify in this browser","Your browser can't run the offline check. No problem — paste the key straight into the Promptsickle app instead.");
+      else show(false,"Couldn't verify","Something went wrong reading that key.");
+    }
+  });
+  $("sampleBtn").addEventListener("click", ()=>{ $("keyInput").value=SAMPLE_KEY; $("verifyBtn").click(); });
+</script>
+</body>
+</html>
